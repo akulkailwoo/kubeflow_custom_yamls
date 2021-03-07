@@ -21,4 +21,4 @@ implementation:
               --runtime-version=2.3 \
               --framework="xgboost" \
               --python-version=3.7 \
-              --region="us-central1" \ 
+              --region="us-central1" 
