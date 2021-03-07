@@ -13,7 +13,7 @@ implementation:
                 gcloud auth activate-service-account --key-file="${GOOGLE_APPLICATION_CREDENTIALS}"
             fi
             gcloud config set project "bta---talabat" 
-            gcloud ai-platform models create "Pipeline_deployment_test_v2" \
+            gcloud ai-platform models create "Pipeline_deployment_test_v1" \
 	      --region="us-central1"
             gcloud ai-platform versions create "test3" \
               --model="Pipeline_deployment_test_v2" \
