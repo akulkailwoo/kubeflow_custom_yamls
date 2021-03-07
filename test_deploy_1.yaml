@@ -1,0 +1,23 @@
+name: Model deployment test
+inputs:
+outputs:
+implementation:
+    container:
+        image: google/cloud-sdk
+        command:
+        - sh
+        - -ex
+        - -c
+        - |
+            if [ -n "${GOOGLE_APPLICATION_CREDENTIALS}" ]; then
+                gcloud auth activate-service-account --key-file="${GOOGLE_APPLICATION_CREDENTIALS}"
+            fi
+            gcloud config set project "bta---talabat" 
+            gcloud ai-platform models create "Pipeline_deployment_test_v2" \--region="us-central1"
+            gcloud ai-platform versions create "test3" \
+              --model="Pipeline_deployment_test_v2" \
+              --origin="gs://kubeflow-test1-bta---talabat/sample_pipeline2/model" \
+              --runtime-version=2.3 \
+              --framework="xgboost" \
+              --python-version=3.7 \
+              --region="us-central1" \ 
